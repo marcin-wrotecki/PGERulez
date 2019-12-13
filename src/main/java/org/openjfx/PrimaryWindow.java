@@ -14,10 +14,10 @@ import java.io.IOException;
 
 public class PrimaryWindow extends Application {
     private static Scene scene;
-
+    FileHandler fileHandler = new FileHandler();
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        scene = new Scene(loadFXML("primary"), 900, 600);
         stage.setScene(scene);
         stage.show();
         stage.setTitle("PGErulez"); // function which set name of program
@@ -25,10 +25,9 @@ public class PrimaryWindow extends Application {
         try{
             stage.getIcons().add(new Image(new FileInputStream("img/pge.png")));//adding icon
         }catch(Exception e) {
-            System.err.println("Icon doesn't find");
+            System.err.println("Logo doesn't find");
         }
-        // MainWindowController controller = (MainWindowController) fxmlLoader.getController();
-        scene.getStylesheets().add(FileHandler.fileToStylesheetString(new File("styles/darkStyle.css")));
+        scene.getStylesheets().add(fileHandler.fileToStylesheetString(new File("styles/darkStyle.css")));
 
         //  controller.initialize();
         stage.setMinHeight(600);

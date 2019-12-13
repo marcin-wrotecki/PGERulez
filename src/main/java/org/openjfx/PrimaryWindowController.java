@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -30,8 +31,11 @@ public class PrimaryWindowController implements Initializable {
     private TextField filePath;
 
 
-    private boolean decider = true;
     public Stage stage;
+    FileHandler fileHandler = new FileHandler();
+
+    ArrayList<String> linesOfFile = new ArrayList<>();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -39,7 +43,18 @@ public class PrimaryWindowController implements Initializable {
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            System.out.println("Can't find contrast.png image");
         }
+
+        ContrastButton.setOnAction(e-> {
+                try {
+                    fileHandler.changeContrast();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                    System.out.println("Can't change contrast");
+                }
+            });
+
         fileButton.setOnAction(e ->showDialogWindowToChooseFile(filePath));
         filePath.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -55,25 +70,23 @@ public class PrimaryWindowController implements Initializable {
         });
 
 
+        confirmButton.setOnAction(e-> changePathFile());
+
+
     }
 
     @FXML
-    private void switchToSecondary() throws IOException {
-        PrimaryWindow.setRoot("secondary");
-    }
+    private void changePathFile(){
+        if (!filePath.getStyleClass().contains("warningTextField")) {
+            linesOfFile=fileHandler.readFile(filePath.getText());
+            for(String line:linesOfFile)
+            {
+                System.out.println(line);
+            }
+        } else {
+            InfoWindowHandler.showErrorWindow("Podano niepoprawny plik", "Proszę podać plik o rozszerzeniu .csv");
 
-    @FXML
-    private void changeContrast() throws IOException {
-        decider = !decider;
-        if(decider){
-            FileHandler.styleFile="styles/darkStyle.css";
-            PrimaryWindow.getScene().getStylesheets().setAll(FileHandler.fileToStylesheetString(new File(FileHandler.styleFile)));
         }
-        else {
-            FileHandler.styleFile="styles/lightStyle.css";
-            PrimaryWindow.getScene().getStylesheets().setAll(FileHandler.fileToStylesheetString(new File(FileHandler.styleFile)));
-        }
-
     }
     public Stage getStage() {
         return stage;

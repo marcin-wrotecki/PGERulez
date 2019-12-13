@@ -18,14 +18,15 @@ public class InfoWindowHandler {
     private static Scene scene;
 
     @FXML
-    public static void showErrorWindow() throws IOException {
+    public static void showErrorWindow(String header, String message)  {
         Alert alert = new Alert(Alert.AlertType.ERROR);
 
-        alert.setTitle("Podano zły plik");
-        alert.setHeaderText("Proszę podać plik o rozszerzeniu .csv");
+        alert.setTitle(header);
+        alert.setHeaderText(message);
         alert.showAndWait();
 
     }
+
 
 
 
