@@ -33,23 +33,44 @@ public class FileHandler {
             fileReader = new BufferedReader(new FileReader(pathToFile));
         } catch (FileNotFoundException e) {
             System.out.println("Can't find file to read");
-            //InfoWindowHandler.showErrorWindow("Podano niepoprawny plik","Nie można otworzyć pliku podana ścieżka moze być niepoprawna");
+            InfoWindowHandler.showErrorWindow("Podano niepoprawny plik","Nie można otworzyć pliku podana ścieżka moze być niepoprawna");
+            return null;
         }
+        int i = 0;
         try {
             while ((row = fileReader.readLine()) != null) {
+                row=row.replace(',','.');
                 result.add(row);
-                // do something with the data
+
             }
             fileReader.close();
         }
         catch(IOException e){
+            InfoWindowHandler.showErrorWindow("Podano niepoprawny plik","Nie można otworzyć pliku podana ścieżka moze być niepoprawna");
 
         };
 
         return result;
     }
 
+    public void writeToFile(String fileName,ArrayList<String> data) {
+        BufferedWriter writer = null;
+        try {
+            writer = new BufferedWriter(new FileWriter("result/"+fileName));
 
+
+        for(String s : data) {
+            writer.append(s);
+            writer.append("\n");
+        }
+
+        writer.close();
+        InfoWindowHandler.showSuccesWindow("Zapis do pliku powiódł się!","Utworzono plik: "+fileName);
+        }
+        catch (IOException e) {
+            System.out.println("Can't write to file");
+        }
+    }
     @FXML
     public void changeContrast() throws IOException {
         decider = !decider;

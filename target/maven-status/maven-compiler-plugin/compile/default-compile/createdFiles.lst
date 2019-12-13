@@ -1,0 +1,8 @@
+module-info.class
+org\openjfx\PrimaryWindow.class
+org\openjfx\PrimaryWindowController$1.class
+org\openjfx\Laucher.class
+org\openjfx\SecondaryController.class
+org\openjfx\PrimaryWindowController.class
+org\openjfx\InfoWindowHandler.class
+org\openjfx\FileHandler.class

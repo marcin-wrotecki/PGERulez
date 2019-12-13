@@ -27,7 +27,16 @@ public class InfoWindowHandler {
 
     }
 
+    @FXML
+    public static void showSuccesWindow(String header, String message)  {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
+        alert.setTitle("Sukces");
+        alert.setHeaderText(header);
+        alert.setContentText(message);
+        alert.showAndWait();
+
+    }
 
 
 }

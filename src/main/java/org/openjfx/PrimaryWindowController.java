@@ -28,13 +28,15 @@ public class PrimaryWindowController implements Initializable {
     Button fileButton, confirmButton,ContrastButton;
 
     @FXML
-    private TextField filePath;
+    private TextField filePath,resultFileName;
 
 
     public Stage stage;
     FileHandler fileHandler = new FileHandler();
 
     ArrayList<String> linesOfFile = new ArrayList<>();
+
+    private String defaultResultFileName = new String("wyniki.csv");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -45,6 +47,8 @@ public class PrimaryWindowController implements Initializable {
             e.printStackTrace();
             System.out.println("Can't find contrast.png image");
         }
+
+        resultFileName.setText(defaultResultFileName);
 
         ContrastButton.setOnAction(e-> {
                 try {
@@ -60,7 +64,7 @@ public class PrimaryWindowController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 String[] tab = newValue.split("\\\\");
-                Pattern p = Pattern.compile("([\\p{Alnum}ąężźćśĄĘŻŹŚ ]+\\.csv)");
+                Pattern p = Pattern.compile("([\\p{Alnum}ąężźćśĄĘŻŹŚ _]+\\.csv)");
                 Matcher m = p.matcher(tab[tab.length - 1]);
                 if (!m.matches())
                     filePath.getStyleClass().add("warningTextField");
@@ -79,10 +83,9 @@ public class PrimaryWindowController implements Initializable {
     private void changePathFile(){
         if (!filePath.getStyleClass().contains("warningTextField")) {
             linesOfFile=fileHandler.readFile(filePath.getText());
-            for(String line:linesOfFile)
-            {
-                System.out.println(line);
-            }
+            if(linesOfFile!=null)
+                fileHandler.writeToFile(resultFileName.getText(),linesOfFile);
+
         } else {
             InfoWindowHandler.showErrorWindow("Podano niepoprawny plik", "Proszę podać plik o rozszerzeniu .csv");
 
