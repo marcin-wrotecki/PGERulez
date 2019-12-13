@@ -1,0 +1,69 @@
+StackPane{
+-fx-background-color:linear-gradient(to right, rgba(226,226,226,1) 0%, rgba(222,222,222,1) 51%, rgba(221,221,221,1) 68%, rgba(220,220,220,1) 81%, rgba(219,219,219,1) 100%);
+}
+
+ScrollPane{
+-fx-background-color:linear-gradient(to right, rgba(226,226,226,1) 0%, rgba(222,222,222,1) 51%, rgba(221,221,221,1) 68%, rgba(220,220,220,1) 81%, rgba(219,219,219,1) 100%);
+}
+
+ScrollPane > StackPane{
+    -fx-background-color:none;
+}
+
+Button{
+   -fx-background-color:linear-gradient(to right, #257520 0%,#257520 35%,#257520 35%,#009e4f 70%,#009e4f 86%);
+   -fx-text-fill:white;
+}
+StackPane>StackPane > Button{
+ -fx-font-size:15px;
+}
+
+Button:hover{
+      -fx-font-weight:bold;
+}
+
+Button:pressed{
+   -fx-font-weight:bold;
+}
+Label{
+   -fx-alignment:center;
+}
+#Warning{
+    -fx-text-fill:#f01a1a
+}
+
+.text-field{
+    -fx-alignment:center;
+}
+
+.table-view{
+    -fx-alignment: center;
+}
+.table-view .table-column{
+   -fx-alignment: center;
+
+}
+
+.table-view .table-column .table-cell{
+    -fx-alignment: center;
+}
+
+.table-view .column-header-background .label{
+	-fx-min-height: 50px;
+	-fx-alignment: center;
+
+}
+
+
+.warningTextField{
+    -fx-background-color:red;
+}
+
+
+#Warning{
+    -fx-text-fill:#f01a1a
+}
+
+#backButton{
+    -fx-background-color:linear-gradient(to right, rgba(226,226,226,1) 0%, rgba(222,222,222,1) 51%, rgba(221,221,221,1) 68%, rgba(220,220,220,1) 81%, rgba(219,219,219,1) 100%);;
+}

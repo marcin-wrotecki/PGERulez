@@ -1,16 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Button?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.StackPane?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.PrimaryWindowController">
-   <children>
-      <Label text="Primary View" />
-      <Button fx:id="primaryButton" text="Switch to Secondary View" onAction="#switchToSecondary"/>
-   </children>
-   <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-   </padding>
-</VBox>
+<ScrollPane fitToWidth="true" maxHeight="600.0" maxWidth="900.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.PrimaryWindowController">
+   <content>
+      <StackPane fx:id="stackPane" alignment="TOP_LEFT" prefHeight="1000.0" prefWidth="903.0">
+         <children>
+            <Button fx:id="ContrastButton" mnemonicParsing="false" onAction="#changeContrast" prefWidth="170.0" text="Zmień kontrast" StackPane.alignment="TOP_LEFT">
+               <StackPane.margin>
+                  <Insets left="10.0" top="10.0" />
+               </StackPane.margin>
+            </Button>
+            <Button fx:id="confirmButton" minHeight="50.0" minWidth="300.0" mnemonicParsing="false" text="Zatwierdź plik .csv" StackPane.alignment="TOP_CENTER">
+               <StackPane.margin>
+                  <Insets top="125.0" />
+               </StackPane.margin>
+            </Button>
+            <TextField fx:id="filePath" alignment="TOP_LEFT" maxWidth="550.0" minWidth="550.0" prefHeight="26.0" prefWidth="550.0" StackPane.alignment="TOP_CENTER">
+               <StackPane.margin>
+                  <Insets right="140.0" top="80.0" />
+               </StackPane.margin>
+            </TextField>
+            <Button fx:id="fileButton" minWidth="100.0" mnemonicParsing="false" text="Wybierz plik" StackPane.alignment="TOP_CENTER">
+               <StackPane.margin>
+                  <Insets left="600.0" top="80.0" />
+               </StackPane.margin>
+            </Button>
+
+         </children>
+      </StackPane>
+   </content>
+</ScrollPane>

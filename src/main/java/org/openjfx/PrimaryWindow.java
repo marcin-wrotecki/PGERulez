@@ -1,11 +1,15 @@
 package org.openjfx;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 
 public class PrimaryWindow extends Application {
@@ -16,12 +20,35 @@ public class PrimaryWindow extends Application {
         scene = new Scene(loadFXML("primary"), 640, 480);
         stage.setScene(scene);
         stage.show();
+        stage.setTitle("PGErulez"); // function which set name of program
+
+        try{
+            stage.getIcons().add(new Image(new FileInputStream("img/pge.png")));//adding icon
+        }catch(Exception e) {
+            System.err.println("Icon doesn't find");
+        }
+        // MainWindowController controller = (MainWindowController) fxmlLoader.getController();
+        scene.getStylesheets().add(FileHandler.fileToStylesheetString(new File("styles/darkStyle.css")));
+
+        //  controller.initialize();
+        stage.setMinHeight(600);
+        stage.setMinWidth(900);
+        stage.setResizable(false);
+        stage.show();
+        stage.setOnCloseRequest(e->closeProgram());
+    }
+    public static void closeProgram(){
+        Platform.exit();
+        System.exit(0);
     }
 
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 
+    public static Scene getScene(){
+        return scene;
+    }
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Laucher.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
