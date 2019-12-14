@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class FileHandler {
 
 
-    public static volatile String styleFile="styles/darkStyle.css";
+    public static volatile String styleFile="styles/lightStyle.css";
     private static boolean decider = true;
     //functions in charge of loading properly string of css file
     public  String fileToStylesheetString ( File stylesheetFile ) {
@@ -75,12 +75,13 @@ public class FileHandler {
     public void changeContrast() throws IOException {
         decider = !decider;
         if(decider){
-            FileHandler.styleFile="styles/darkStyle.css";
-            PrimaryWindow.getScene().getStylesheets().setAll(fileToStylesheetString(new File(FileHandler.styleFile)));
+            styleFile="styles/lightStyle.css";
+            PrimaryWindow.getScene().getStylesheets().setAll(fileToStylesheetString(new File(styleFile)));
         }
         else {
-            FileHandler.styleFile="styles/lightStyle.css";
-            PrimaryWindow.getScene().getStylesheets().setAll(fileToStylesheetString(new File(FileHandler.styleFile)));
+            styleFile="styles/darkStyle.css";
+
+            PrimaryWindow.getScene().getStylesheets().setAll(fileToStylesheetString(new File(styleFile)));
         }
 
     }

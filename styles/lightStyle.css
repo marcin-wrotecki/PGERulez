@@ -2,12 +2,12 @@ StackPane{
 -fx-background-color:linear-gradient(to right, rgba(226,226,226,1) 0%, rgba(222,222,222,1) 51%, rgba(221,221,221,1) 68%, rgba(220,220,220,1) 81%, rgba(219,219,219,1) 100%);
 }
 
-ScrollPane{
+.scroll-pane {
 -fx-background-color:linear-gradient(to right, rgba(226,226,226,1) 0%, rgba(222,222,222,1) 51%, rgba(221,221,221,1) 68%, rgba(220,220,220,1) 81%, rgba(219,219,219,1) 100%);
 }
 
 ScrollPane > StackPane{
-    -fx-background-color:none;
+    -fx-background-color:linear-gradient(to right, rgba(226,226,226,1) 0%, rgba(222,222,222,1) 51%, rgba(221,221,221,1) 68%, rgba(220,220,220,1) 81%, rgba(219,219,219,1) 100%);
 }
 
 Button{

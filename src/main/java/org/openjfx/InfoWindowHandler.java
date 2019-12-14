@@ -14,8 +14,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 public class InfoWindowHandler {
-    private static Stage stage=new Stage();
-    private static Scene scene;
+
 
     @FXML
     public static void showErrorWindow(String header, String message)  {

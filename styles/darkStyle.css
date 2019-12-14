@@ -1,12 +1,11 @@
 StackPane{
-    -fx-background-color:linear-gradient(to right, #232526, #414345) ;
-
+    -fx-background-color:linear-gradient(to right, rgba(76,76,76,1) 0%, rgba(89,89,89,1) 0%, rgba(102,102,102,0.73) 95%, rgba(102,101,102,0.72) 100%);
 }
 .text-field{
     -fx-alignment:center;
 }
 
-.scroll-pane{
+ScrollPane{
 -fx-background-color:linear-gradient(to right, #232526, #414345) ;
 }
 

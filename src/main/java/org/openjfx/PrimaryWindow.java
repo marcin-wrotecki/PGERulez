@@ -27,7 +27,7 @@ public class PrimaryWindow extends Application {
         }catch(Exception e) {
             System.err.println("Logo doesn't find");
         }
-        scene.getStylesheets().add(fileHandler.fileToStylesheetString(new File("styles/darkStyle.css")));
+        scene.getStylesheets().add(fileHandler.fileToStylesheetString(new File("styles/lightStyle.css")));
 
         //  controller.initialize();
         stage.setMinHeight(600);

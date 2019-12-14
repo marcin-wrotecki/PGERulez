@@ -5,11 +5,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.StackPane?>
 
-<ScrollPane fitToWidth="true" maxHeight="600.0" maxWidth="900.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.PrimaryWindowController">
+<ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="600.0" maxWidth="900.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.PrimaryWindowController">
    <content>
-      <StackPane fx:id="stackPane" alignment="TOP_LEFT" prefHeight="1000.0" prefWidth="903.0">
+      <StackPane fx:id="stackPane" alignment="TOP_LEFT" prefHeight="595.0" prefWidth="903.0">
          <children>
             <Button fx:id="ContrastButton" mnemonicParsing="false" prefWidth="170.0" text="Zmień kontrast" StackPane.alignment="TOP_LEFT">
                <StackPane.margin>
@@ -41,6 +43,22 @@
                   <Insets top="150.0" />
                </StackPane.margin>
             </TextField>
+            <ImageView fitHeight="450.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_CENTER">
+               <StackPane.margin>
+                  <Insets top="320.0" />
+               </StackPane.margin>
+               <image>
+                  <Image url="@pgeEnergiaCiepla.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_LEFT">
+               <StackPane.margin>
+                  <Insets left="50.0" top="130.0" />
+               </StackPane.margin>
+               <image>
+                  <Image url="@agh.png" />
+               </image>
+            </ImageView>
 
          </children>
       </StackPane>
