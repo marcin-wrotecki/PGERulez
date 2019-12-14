@@ -37,6 +37,7 @@ public class PrimaryWindowController implements Initializable {
     ArrayList<String> linesOfFile = new ArrayList<>();
 
     private String defaultResultFileName = new String("wyniki.csv");
+    ObjectiveFunction objectiveFunction;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -83,7 +84,8 @@ public class PrimaryWindowController implements Initializable {
     private void changePathFile(){
         if (!filePath.getStyleClass().contains("warningTextField")) {
             linesOfFile=fileHandler.readFile(filePath.getText());
-            String str[] = linesOfFile.get(1).split(";");
+            objectiveFunction = new ObjectiveFunction(linesOfFile);
+
             if(linesOfFile!=null)
                 fileHandler.writeToFile(resultFileName.getText(),linesOfFile);
 

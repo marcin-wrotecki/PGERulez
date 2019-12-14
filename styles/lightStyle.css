@@ -32,27 +32,6 @@ Label{
     -fx-text-fill:#f01a1a
 }
 
-.text-field{
-    -fx-alignment:center;
-}
-
-.table-view{
-    -fx-alignment: center;
-}
-.table-view .table-column{
-   -fx-alignment: center;
-
-}
-
-.table-view .table-column .table-cell{
-    -fx-alignment: center;
-}
-
-.table-view .column-header-background .label{
-	-fx-min-height: 50px;
-	-fx-alignment: center;
-
-}
 
 
 .warningTextField{
@@ -64,6 +43,3 @@ Label{
     -fx-text-fill:#f01a1a
 }
 
-#backButton{
-    -fx-background-color:linear-gradient(to right, rgba(226,226,226,1) 0%, rgba(222,222,222,1) 51%, rgba(221,221,221,1) 68%, rgba(220,220,220,1) 81%, rgba(219,219,219,1) 100%);;
-}

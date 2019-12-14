@@ -3,10 +3,10 @@ package org.openjfx;
 
 import java.math.BigDecimal;
 
-public class Storage {
+public class PowerStorage {
     public BigDecimal storedPower;
 
-    public Storage() {
+    public PowerStorage() {
         this.storedPower = new BigDecimal( "0" );
     }
 
