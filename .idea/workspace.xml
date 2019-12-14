@@ -4,7 +4,6 @@
     <list default="true" id="786202e3-7bd4-49ad-b973-a3d1a77f0da6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/result/wyniki.csv" beforeDir="false" afterPath="$PROJECT_DIR$/result/wyniki.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/ObjectiveFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/ObjectiveFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/PrimaryWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/PrimaryWindowController.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -56,7 +55,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/org/openjfx/ObjectiveFunction.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="500">
-              <caret line="347" column="42" lean-forward="true" selection-start-line="347" selection-start-column="42" selection-end-line="347" selection-end-column="42" />
+              <caret line="335" column="58" lean-forward="true" selection-start-line="335" selection-start-column="58" selection-end-line="335" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -307,7 +306,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1576330713079" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1576331815261" />
     <property name="last_opened_file_path" value="C:/Program Files/Java/javafx-sdk-13.0.1/lib/javafx-swt.jar!/" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -451,19 +450,19 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/openjfx/ObjectiveFunction.java</url>
-          <line>444</line>
+          <line>448</line>
           <properties />
           <option name="timeStamp" value="39" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/openjfx/ObjectiveFunction.java</url>
-          <line>305</line>
+          <line>307</line>
           <properties />
           <option name="timeStamp" value="46" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/openjfx/ObjectiveFunction.java</url>
-          <line>622</line>
+          <line>626</line>
           <properties />
           <option name="timeStamp" value="47" />
         </line-breakpoint>
@@ -654,7 +653,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/org/openjfx/ObjectiveFunction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="500">
-          <caret line="347" column="42" lean-forward="true" selection-start-line="347" selection-start-column="42" selection-end-line="347" selection-end-column="42" />
+          <caret line="335" column="58" lean-forward="true" selection-start-line="335" selection-start-column="58" selection-end-line="335" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

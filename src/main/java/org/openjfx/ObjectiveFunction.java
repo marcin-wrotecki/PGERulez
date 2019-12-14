@@ -139,7 +139,7 @@ public class ObjectiveFunction {
             double Pt_new = 0.0;
             double gu_save = 0.0;
 
-            for (double j = 40; a.CheckBoundaries(new BigDecimal(resultData.get(i).t), new BigDecimal(j)); j += 0.1) {
+            /*for (double j = 40; a.CheckBoundaries(new BigDecimal(resultData.get(i).t), new BigDecimal(j)); j += 0.1) {
                 gu = Double.parseDouble(a.GasUse(new BigDecimal(j)).toString());
                 pe = Double.parseDouble(a.ElectricPower(new BigDecimal(j)).toString());
                 Y = Double.parseDouble(resultData.get(i).K) * Pe_new + 130 * j - 32 * gu;
@@ -149,11 +149,13 @@ public class ObjectiveFunction {
                     gu_save = gu;
                     Pe_new = pe;
                 }
-            }
-            a.Pe = new BigDecimal(Pe_new);
-            a.Pt = new BigDecimal(Pt_new);
-            a.Zg = new BigDecimal(gu_save);
-            a.Y = new BigDecimal(max);
+            }*/
+            a.Pt = th_needed;
+            a.Pe = a.ElectricPower(a.Pt);
+            a.Zg = a.GasUse(a.Pt);
+            BigDecimal temp = a.Pt.multiply(new BigDecimal("130"));
+            BigDecimal temp2 = a.Zg.multiply(new BigDecimal("-32"));
+            a.Y = new BigDecimal(resultData.get(i).K).multiply(a.Pe).add(temp).add(temp2);
         }
 
         resultData.get(i).saveDataFromUnits(a, b, c, d, ps);
@@ -424,8 +426,10 @@ public class ObjectiveFunction {
             BigDecimal temp2 = c.Zw.multiply(new BigDecimal("-20.8"));
             c.Y = new BigDecimal(resultData.get(i).K).multiply(c.Pe).add(temp).add(temp2);
 
-            if( (new BigDecimal("440")).subtract(th_needed).compareTo(new BigDecimal("0")) >= 0 ) {
-                d.Pt = (new BigDecimal("440")).subtract(c.Pt);
+            if( th_needed.subtract(c.Pt).compareTo(new BigDecimal("0")) > 0 ) {
+            //if( (new BigDecimal("440")).subtract(th_needed).compareTo(new BigDecimal("0")) >= 0 ) {
+                //d.Pt = (new BigDecimal("440")).subtract(c.Pt);
+                d.Pt = th_needed.subtract(c.Pt);
                 d.Pe = d.ElectricPower(d.Pt);
                 d.Zw = d.CoalUse(d.Pt);
                 temp = d.Pt.multiply(new BigDecimal("130"));
