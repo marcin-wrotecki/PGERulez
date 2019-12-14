@@ -98,7 +98,14 @@ public class ObjectiveFunction {
         UnitCD d = new UnitCD();
 
         if (resultData.get(i).DB.equals("1")) {
-            b.Pt = th_needed;
+            if( (new BigDecimal("172")).subtract(th_needed).compareTo(new BigDecimal("10")) >= 0 )
+            {
+                if( (new BigDecimal("840")).subtract(ps.storedPower).compareTo( new BigDecimal("10")) >=0 )
+                {
+                    ps.storedPower = ps.storedPower.add(new BigDecimal("10"));
+                }
+            }
+            b.Pt = th_needed.add(ps.storedPower);
             double max = 0.0;
             double Y = 0.0;
             double cu = 0.0;
@@ -117,12 +124,12 @@ public class ObjectiveFunction {
             b.Pe = new BigDecimal(Pe_new);
             b.Zw = new BigDecimal(cu_save);
             b.Y = new BigDecimal(max);
-            if (th_needed.compareTo(new BigDecimal("130")) >= 0 && ps.storedPower.compareTo(new BigDecimal("840")) <= 0) {
+            /*if (th_needed.compareTo(new BigDecimal("130")) >= 0 && ps.storedPower.compareTo(new BigDecimal("840")) <= 0) {
                 b.Pt = new BigDecimal("140");
                 BigDecimal sp = new BigDecimal("0");
                 sp = sp.add(new BigDecimal("140")).subtract(th_needed);
                 ps.storedPower = ps.storedPower.add(sp);
-            }
+            }*/
         } else {
             double max = 0.0;
             double Y = 0.0;
@@ -157,13 +164,15 @@ public class ObjectiveFunction {
         UnitB b = new UnitB();
         UnitCD c = new UnitCD();
         UnitCD d = new UnitCD();
-
+        if(i==1651)
+            System.out.println(i);
         if (resultData.get(i).DC.equals("1")) {
             if (Tr >= 0) {
                 c.R = new BigDecimal("10000");
                 Optimize0To140(th_needed, i);
-                if (Tr == 0)
-                    b.startWork = false;
+                return;
+                //if (Tr == 0)
+                  //  b.startWork = false;
             } else {
                 c.Pt = th_needed;
                 double max = 0.0;
@@ -215,7 +224,7 @@ public class ObjectiveFunction {
                     BigDecimal dif = th_needed.subtract(new BigDecimal("140"));
 
                 }
-                TrC = 6;
+                //TrC = 6;
 
             }
         } else if (resultData.get(i).DD.equals("1")) {
@@ -225,8 +234,9 @@ public class ObjectiveFunction {
                 if (Tr >= 0) {
                     d.R = new BigDecimal("10000");
                     Optimize0To140(th_needed, i);
-                    if (Tr == 0)
-                        b.startWork = false;
+                    return;
+                    /*if (Tr == 0)
+                        b.startWork = false;*/
                 } else {
                     d.Pt = th_needed;
                     double max = 0.0;
@@ -291,8 +301,9 @@ public class ObjectiveFunction {
         UnitB b = new UnitB();
         UnitCD c = new UnitCD();
         UnitCD d = new UnitCD();
-        if(i==2130)
-            System.out.println(i);
+
+        if (i==2149)
+            System.out.println("elo");
         /*if (resultData.get(i).DD.equals("1")) {
             if (Trc >= 0) {
                 c.R = new BigDecimal("10000");
@@ -324,18 +335,21 @@ public class ObjectiveFunction {
                 }
                 else
                 {
-                    a.Pt = th_needed.subtract(c.Pt).subtract(ps.Pt);
                     double max = 0.0;
                     double Y = 0.0;
                     double cu = 0.0;
                     double Pe_new = 0.0;
                     double cu_save = 0.0;
 
-                    a.Pe = a.ElectricPower(d.Pt);
-                    a.Zg = a.GasUse(d.Pt);
+                    if(th_needed.subtract(c.Pt).subtract(ps.Pt).compareTo(new BigDecimal("0"))>=0)
+                    {
+                        a.Pt = th_needed.subtract(c.Pt).subtract(ps.Pt);
+                    a.Pe = a.ElectricPower(a.Pt);
+                    a.Zg = a.GasUse(a.Pt);
                     temp = a.Pt.multiply(new BigDecimal("130"));
                     temp2 = a.Zg.multiply(new BigDecimal("-32"));
-                    a.Y = new BigDecimal(resultData.get(i).K).multiply(d.Pe).add(temp).add(temp2);
+                    a.Y = new BigDecimal(resultData.get(i).K).multiply(a.Pe).add(temp).add(temp2);
+                    }
 
 
                     //dodatkowa produkcja pradu z B
@@ -403,29 +417,32 @@ public class ObjectiveFunction {
 
         if( resultData.get(i).DC.equals("1") && resultData.get(i).DD.equals("1"))
         {
-            c.Pt = th_needed;
+            c.Pt = new BigDecimal("220");
             c.Pe = c.ElectricPower(c.Pt);
             c.Zw = c.CoalUse(c.Pt);
             BigDecimal temp = c.Pt.multiply(new BigDecimal("130"));
             BigDecimal temp2 = c.Zw.multiply(new BigDecimal("-20.8"));
             c.Y = new BigDecimal(resultData.get(i).K).multiply(c.Pe).add(temp).add(temp2);
 
-            d.Pt = th_needed.subtract(c.Pt);
-            d.Pe = d.ElectricPower(d.Pt);
-            d.Zw = d.CoalUse(d.Pt);
-            temp = d.Pt.multiply(new BigDecimal("130"));
-            temp2 = d.Zw.multiply(new BigDecimal("-20.8"));
-            d.Y = new BigDecimal(resultData.get(i).K).multiply(d.Pe).add(temp).add(temp2);
+            if( (new BigDecimal("440")).subtract(th_needed).compareTo(new BigDecimal("0")) >= 0 ) {
+                d.Pt = (new BigDecimal("440")).subtract(c.Pt);
+                d.Pe = d.ElectricPower(d.Pt);
+                d.Zw = d.CoalUse(d.Pt);
+                temp = d.Pt.multiply(new BigDecimal("130"));
+                temp2 = d.Zw.multiply(new BigDecimal("-20.8"));
+                d.Y = new BigDecimal(resultData.get(i).K).multiply(d.Pe).add(temp).add(temp2);
+            }
         }
         else if ( resultData.get(i).DC.equals("1") )
         {
-            c.Pt = th_needed;
+            c.Pt = new BigDecimal("220");
             c.Pe = c.ElectricPower(c.Pt);
             c.Zw = c.CoalUse(c.Pt);
             BigDecimal temp = c.Pt.multiply(new BigDecimal("130"));
             BigDecimal temp2 = c.Zw.multiply(new BigDecimal("-20.8"));
             c.Y = new BigDecimal(resultData.get(i).K).multiply(c.Pe).add(temp).add(temp2);
-
+            if (i==158)
+                System.out.println("elo");
             BigDecimal dif = th_needed.subtract(c.Pt);
             if( dif.compareTo(new BigDecimal("172")) <= 0 )
             {
@@ -483,7 +500,7 @@ public class ObjectiveFunction {
         }
         else if ( resultData.get(i).DD.equals("1") )
         {
-            d.Pt = th_needed;
+            d.Pt = new BigDecimal("220");
             d.Pe = d.ElectricPower(d.Pt);
             d.Zw = d.CoalUse(d.Pt);
             BigDecimal temp = d.Pt.multiply(new BigDecimal("130"));
@@ -553,7 +570,7 @@ public class ObjectiveFunction {
         UnitB b = new UnitB();
         UnitCD c = new UnitCD();
         UnitCD d = new UnitCD();
-        
+
         if( resultData.get(i).DC.equals("1") && resultData.get(i).DD.equals("1") && resultData.get(i).DB.equals("1") )
         {
             c.Pt = new BigDecimal("220");
@@ -570,26 +587,28 @@ public class ObjectiveFunction {
             temp2 = d.Zw.multiply(new BigDecimal("-20.8"));
             d.Y = new BigDecimal(resultData.get(i).K).multiply(d.Pe).add(temp).add(temp2);
 
-            b.Pt = th_needed.subtract(new BigDecimal("440"));
-            double max = 0.0;
-            double Y = 0.0;
-            double cu = 0.0;
-            double Pe_new = 0.0;
-            double cu_save = 0.0;
-            for (double j = 72; j < 120; j += 0.1) {
-                cu = Double.parseDouble(b.CoalUse(new BigDecimal(j), b.Pt).toString());
-                Y = Double.parseDouble(resultData.get(i).K) * j + 130 * Double.parseDouble(b.Pt.toString()) - 20.8 * cu;
-                if (Y > max && Math.abs(cu) > 0.0001) {
-                    max = Y;
-                    Pe_new = j;
-                    cu_save = cu;
+            if( th_needed.subtract(new BigDecimal("440")).compareTo(new BigDecimal("0")) > 0 ) {
+                b.Pt = th_needed.subtract(new BigDecimal("440"));
+                double max = 0.0;
+                double Y = 0.0;
+                double cu = 0.0;
+                double Pe_new = 0.0;
+                double cu_save = 0.0;
+                for (double j = 72; j < 120; j += 0.1) {
+                    cu = Double.parseDouble(b.CoalUse(new BigDecimal(j), b.Pt).toString());
+                    Y = Double.parseDouble(resultData.get(i).K) * j + 130 * Double.parseDouble(b.Pt.toString()) - 20.8 * cu;
+                    if (Y > max && Math.abs(cu) > 0.0001) {
+                        max = Y;
+                        Pe_new = j;
+                        cu_save = cu;
+                    }
                 }
+                b.Pe = new BigDecimal(Pe_new);
+                b.Zw = b.CoalUse(b.Pe, b.Pt);
+                temp = b.Pt.multiply(new BigDecimal("130"));
+                temp2 = b.Zw.multiply(new BigDecimal("-20.8"));
+                b.Y = new BigDecimal(resultData.get(i).K).multiply(b.Pe).add(temp).add(temp2);
             }
-            b.Pe = new BigDecimal(Pe_new);
-            b.Zw = b.CoalUse( b.Pe, b.Pt );
-            temp = b.Pt.multiply(new BigDecimal("130"));
-            temp2 = b.Zw.multiply(new BigDecimal("-20.8"));
-            b.Y = new BigDecimal(resultData.get(i).K).multiply(b.Pe).add(temp).add(temp2);
 
         }
         resultData.get(i).saveDataFromUnits(a, b, c, d, ps);
@@ -600,7 +619,8 @@ public class ObjectiveFunction {
         UnitB b = new UnitB();
         UnitCD c = new UnitCD();
         UnitCD d = new UnitCD();
-
+        if (i==2149)
+            System.out.println("elo");
         if( resultData.get(i).DA.equals("1") && resultData.get(i).DB.equals("1") && resultData.get(i).DC.equals("1") && resultData.get(i).DD.equals("1") )
         {
             c.Pt = new BigDecimal("220");

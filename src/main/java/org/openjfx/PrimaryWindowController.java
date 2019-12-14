@@ -121,31 +121,31 @@ public class PrimaryWindowController implements Initializable {
             BigDecimal sumRD= new BigDecimal("0");
 
 
-            for(int i=0;i<objectiveFunction.resultData.size();i++)
+            for(int i=1;i<objectiveFunction.resultData.size();i++)
             {
                 sumY=sumY.add(new BigDecimal(objectiveFunction.resultData.get(i).Y));
                 sumPt =sumPt .add(new BigDecimal(objectiveFunction.resultData.get(i).Pt ));
                 sumPe =sumPe .add(new BigDecimal(objectiveFunction.resultData.get(i).Pe ));
                 sumZw =sumZw .add(new BigDecimal(objectiveFunction.resultData.get(i).Zw ));
-                sumPtA=sumPtA.add(new BigDecimal(objectiveFunction.resultData.get(i).PtA));
                 sumZg =sumZg .add(new BigDecimal(objectiveFunction.resultData.get(i).Zg ));
+                sumPtA=sumPtA.add(new BigDecimal(objectiveFunction.resultData.get(i).PtA));
                 sumPtB=sumPtB.add(new BigDecimal(objectiveFunction.resultData.get(i).PtB));
                 sumPtC=sumPtC.add(new BigDecimal(objectiveFunction.resultData.get(i).PtC));
                 sumPtD=sumPtD.add(new BigDecimal(objectiveFunction.resultData.get(i).PtD));
 
-                if(new BigDecimal(objectiveFunction.resultData.get(i).PtS).compareTo(minPtS)==1)
+                if(new BigDecimal(objectiveFunction.resultData.get(i).PtS).compareTo(minPtS)==-1)
                     minPtS=new BigDecimal(objectiveFunction.resultData.get(i).PtS);
 
-                if(new BigDecimal(objectiveFunction.resultData.get(i).PtS).compareTo(maxPtS)==-1)
+                if(new BigDecimal(objectiveFunction.resultData.get(i).PtS).compareTo(maxPtS)==1)
                     maxPtS=new BigDecimal(objectiveFunction.resultData.get(i).PtS);
 
-                if(new BigDecimal(objectiveFunction.resultData.get(i).E).compareTo(minE)==1)
+                if(new BigDecimal(objectiveFunction.resultData.get(i).E).compareTo(minE)==-1)
                     minE=new BigDecimal(objectiveFunction.resultData.get(i).E);
 
                 if(new BigDecimal(objectiveFunction.resultData.get(i).E).compareTo(maxE)==1)
                     maxE=new BigDecimal(objectiveFunction.resultData.get(i).E);
 
-                sumPeA=sumPeA.add(new BigDecimal(objectiveFunction.resultData.get(i).PeA));
+               sumPeA=sumPeA.add(new BigDecimal(objectiveFunction.resultData.get(i).PeA));
                sumPeB=sumPeB.add(new BigDecimal(objectiveFunction.resultData.get(i).PeB ));
                sumPeC=sumPeC.add(new BigDecimal(objectiveFunction.resultData.get(i).PeC ));
                sumPeD=sumPeD.add(new BigDecimal(objectiveFunction.resultData.get(i).PeD ));
@@ -159,7 +159,7 @@ public class PrimaryWindowController implements Initializable {
                sumRD= sumRD.add(new BigDecimal(objectiveFunction.resultData.get(i).RD));
 
             }
-            String temp2 =";;;;;;;;"+sumY.toString()+";"+sumPt.toString()+sumPe.toString()+";"+sumZw.toString()+";"+sumPtA.toString()+";"+sumZg.toString()+";"+sumPtB.toString()+";"+sumPtC.toString()+";"+sumPtD.toString()+";"+minPtS.toString()+"/"+maxPtS.toString()+";"+minE.toString()+"/"+maxE.toString()+";"+sumPeA.toString()+";"+sumPeB.toString()+";"+sumPeC.toString()+";"+sumPeD.toString()+";"+sumZgA.toString()+";"+sumZwB.toString()+";"+sumZwC.toString()+";"+sumZwD.toString()+";"+sumRA.toString()+";"+sumRB.toString()+";"+sumRC.toString()+";"+sumRD;
+            String temp2 =";;;;;;;;"+sumY.toString()+";"+sumPt.toString()+";"+sumPe.toString()+";"+sumZg.toString()+";"+sumZw.toString()+";"+sumPtA.toString()+";"+sumPtB.toString()+";"+sumPtC.toString()+";"+sumPtD.toString()+";"+minPtS.toString()+"/"+maxPtS.toString()+";"+minE.toString()+"/"+maxE.toString()+";"+sumPeA.toString()+";"+sumPeB.toString()+";"+sumPeC.toString()+";"+sumPeD.toString()+";"+sumZgA.toString()+";"+sumZwB.toString()+";"+sumZwC.toString()+";"+sumZwD.toString()+";"+sumRA.toString()+";"+sumRB.toString()+";"+sumRC.toString()+";"+sumRD.toString()+";";
             temp.add(temp2.replace('.', ','));
             if(linesOfFile!=null)
                 fileHandler.writeToFile(resultFileName.getText(),temp);
