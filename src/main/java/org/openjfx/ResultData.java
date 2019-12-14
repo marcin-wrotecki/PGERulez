@@ -1,6 +1,8 @@
 package org.openjfx;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 
 public class ResultData {
     public String j;
@@ -46,29 +48,29 @@ public class ResultData {
         this.DC = DC;
         this.DD = DD;
 
-        Y = "";
-        Pt ="";
-        Pe ="";
-        Zg ="";
-        Zw ="";
-        PtA="";
-        PtB="";
-        PtC="";
-        PtD="";
-        PtS="";
-        E ="";
-        PeA="";
-        PeB="";
-        PeC="";
-        PeD="";
-        ZgA="";
-        ZwB="";
-        ZwC="";
-        ZwD="";
-        this.RA ="";
-        this.RB ="";
-        this.RC ="";
-        this.RD ="";
+        Y = "0";
+        Pt ="0";
+        Pe ="0";
+        Zg ="0";
+        Zw ="0";
+        PtA="0";
+        PtB="0";
+        PtC="0";
+        PtD="0";
+        PtS="0";
+        E ="0";
+        PeA="0";
+        PeB="0";
+        PeC="0";
+        PeD="0";
+        ZgA="0";
+        ZwB="0";
+        ZwC="0";
+        ZwD="0";
+        this.RA ="0";
+        this.RB ="0";
+        this.RC ="0";
+        this.RD ="0";
     }
     public ResultData(String[]str) {
         this.j = str[0];
@@ -106,8 +108,8 @@ public class ResultData {
     }
     public String toString(){
         return this.j.replace('.',',') +";"+
-                Ptz.replace('.',',')
-                +";"+ this.t.replace('.',',')+";"+
+                Ptz.replace('.',',') +";"+
+                this.t.replace('.',',')+";"+
                 K.replace('.',',') +";"+
                 this.DA.replace('.',',') +";"+
                 this.DB.replace('.',',')+";"+
@@ -135,7 +137,35 @@ public class ResultData {
                 this.RA.replace('.',',')+";"+
                 this.RB.replace('.',',')+";"+
                 this.RC.replace('.',',')+";"+
-                this.RD.replace('.',',')+"\n";
+                this.RD.replace('.',',');
 
+    }
+    
+    public void saveDataFromUnits(UnitA a, UnitB b, UnitCD c, UnitCD d, PowerStorage ps )
+    {
+         Y = (a.Y.add(b.Y).add(c.Y).add(d.Y)).setScale(2, RoundingMode.HALF_UP).toString();
+
+         Pt = a.Pt.add(b.Pt).add(c.Pt).add(d.Pt).add(ps.Pt).setScale(2, RoundingMode.HALF_UP).toString();
+         Pe = a.Pe.add(b.Pe).add(c.Pe).add(d.Pe).setScale(2, RoundingMode.HALF_UP).toString();
+         Zg = a.Zg.setScale(2, RoundingMode.HALF_UP).toString();
+         Zw = b.Zw.add(c.Zw).add(d.Zw).setScale(2, RoundingMode.HALF_UP).toString();
+         PtA = a.Pt.setScale(2, RoundingMode.HALF_UP).toString();
+         PtB = b.Pt.setScale(2, RoundingMode.HALF_UP).toString();
+         PtC = c.Pt.setScale(2, RoundingMode.HALF_UP).toString();
+         PtD = d.Pt.setScale(2, RoundingMode.HALF_UP).toString();
+         PtS = ps.Pt.setScale(2, RoundingMode.HALF_UP).toString();
+         E = ps.storedPower.setScale(2, RoundingMode.HALF_UP).toString();
+         PeA= a.Pe.setScale(2, RoundingMode.HALF_UP).toString();
+         PeB= b.Pe.setScale(2, RoundingMode.HALF_UP).toString();
+         PeC= c.Pe.setScale(2, RoundingMode.HALF_UP).toString();
+         PeD= d.Pe.setScale(2, RoundingMode.HALF_UP).toString();
+         ZgA = a.Zg.setScale(2, RoundingMode.HALF_UP).toString();
+         ZwB = b.Zw.setScale(2, RoundingMode.HALF_UP).toString();
+         ZwC = c.Zw.setScale(2, RoundingMode.HALF_UP).toString();
+         ZwD = d.Zw.setScale(2, RoundingMode.HALF_UP).toString();
+         RA= a.R.setScale(2, RoundingMode.HALF_UP).toString();
+         RB= b.R.setScale(2, RoundingMode.HALF_UP).toString();
+         RC= c.R.setScale(2, RoundingMode.HALF_UP).toString();
+         RD= d.R.setScale(2, RoundingMode.HALF_UP).toString();
     }
 }

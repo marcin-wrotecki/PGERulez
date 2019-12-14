@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -51,6 +53,7 @@ public class PrimaryWindowController implements Initializable {
 
         resultFileName.setText(defaultResultFileName);
 
+
         ContrastButton.setOnAction(e-> {
                 try {
                     fileHandler.changeContrast();
@@ -82,12 +85,17 @@ public class PrimaryWindowController implements Initializable {
 
     @FXML
     private void changePathFile(){
+
         if (!filePath.getStyleClass().contains("warningTextField")) {
             linesOfFile=fileHandler.readFile(filePath.getText());
             objectiveFunction = new ObjectiveFunction(linesOfFile);
-
+            ArrayList<String> temp = new ArrayList<>();
+            temp.add(linesOfFile.get(0));
+            for(int i = 0; i<objectiveFunction.resultData.size();i++)
+                temp.add(objectiveFunction.resultData.get(i).toString());
+            temp.add(linesOfFile.get(linesOfFile.size()-1));
             if(linesOfFile!=null)
-                fileHandler.writeToFile(resultFileName.getText(),linesOfFile);
+                fileHandler.writeToFile(resultFileName.getText(),temp);
 
         } else {
             InfoWindowHandler.showErrorWindow("Podano niepoprawny plik", "Proszę podać plik o rozszerzeniu .csv");
