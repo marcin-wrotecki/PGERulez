@@ -42,7 +42,7 @@ public class UnitB {
         BigDecimal temp3 = new BigDecimal("1701").divide(new BigDecimal("23"),5, RoundingMode.HALF_UP);
         temp2 = temp2.add(new BigDecimal("72")).subtract(temp3);
 
-        return ((e_power.compareTo( new BigDecimal("72")) == 1 )&&( e_power.compareTo(new BigDecimal("105")) == -1 )&&( th_power.compareTo(new BigDecimal("0")) == 1 )&&(
+        return ((e_power.compareTo( new BigDecimal("72")) == 1 )&&( e_power.compareTo(new BigDecimal("105")) == -1 )&&( th_power.compareTo(new BigDecimal("0")) >= 0 )&&(
                 e_power.compareTo(temp1) == -1 )&&( e_power.compareTo(temp2) == 1 ));
             
     }
@@ -53,7 +53,7 @@ public class UnitB {
         BigDecimal temp2 = th_power.multiply(new BigDecimal("-7")).divide(new BigDecimal("37"),5, RoundingMode.HALF_UP).add(new BigDecimal("112"));
         BigDecimal temp3 = new BigDecimal("665").divide(new BigDecimal("37"),5, RoundingMode.HALF_UP);
         temp2 = temp2.add(temp3);
-        return (( e_power.compareTo(new BigDecimal("105")) >= 0 )&&( th_power.compareTo(new BigDecimal("0")) == 1 )&&(
+        return (( e_power.compareTo(new BigDecimal("105")) >= 0 )&&( th_power.compareTo(new BigDecimal("0")) >= 0 )&&(
                 e_power.compareTo(temp1) == -1 )&&( e_power.compareTo(temp2) == -1 ));
     }
 

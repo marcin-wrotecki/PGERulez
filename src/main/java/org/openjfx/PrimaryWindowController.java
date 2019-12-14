@@ -94,6 +94,73 @@ public class PrimaryWindowController implements Initializable {
             for(int i = 0; i<objectiveFunction.resultData.size();i++)
                 temp.add(objectiveFunction.resultData.get(i).toString());
             temp.add(linesOfFile.get(linesOfFile.size()-1));
+            BigDecimal sumY = new BigDecimal("0");
+            BigDecimal sumPt = new BigDecimal("0");
+            BigDecimal sumPe = new BigDecimal("0");
+            BigDecimal sumZw = new BigDecimal("0");
+            BigDecimal sumPtA = new BigDecimal("0");
+            BigDecimal sumZg = new BigDecimal("0");
+            BigDecimal sumPtB = new BigDecimal("0");
+            BigDecimal sumPtC  = new BigDecimal("0");
+            BigDecimal sumPtD = new BigDecimal("0");
+            BigDecimal minPtS=new BigDecimal(objectiveFunction.resultData.get(1).PtS);
+            BigDecimal minE=new BigDecimal(objectiveFunction.resultData.get(1).E);
+            BigDecimal maxPtS =new BigDecimal(objectiveFunction.resultData.get(1).PtS);
+            BigDecimal maxE =new BigDecimal(objectiveFunction.resultData.get(1).E);
+            BigDecimal sumPeA= new BigDecimal("0");
+            BigDecimal sumPeB= new BigDecimal("0");
+            BigDecimal sumPeC= new BigDecimal("0");
+            BigDecimal sumPeD= new BigDecimal("0");
+            BigDecimal sumZgA= new BigDecimal("0");
+            BigDecimal sumZwB= new BigDecimal("0");
+            BigDecimal sumZwC= new BigDecimal("0");
+            BigDecimal sumZwD= new BigDecimal("0");
+            BigDecimal sumRA= new BigDecimal("0");
+            BigDecimal sumRB= new BigDecimal("0");
+            BigDecimal sumRC= new BigDecimal("0");
+            BigDecimal sumRD= new BigDecimal("0");
+
+
+            for(int i=0;i<objectiveFunction.resultData.size();i++)
+            {
+                sumY=sumY.add(new BigDecimal(objectiveFunction.resultData.get(i).Y));
+                sumPt =sumPt .add(new BigDecimal(objectiveFunction.resultData.get(i).Pt ));
+                sumPe =sumPe .add(new BigDecimal(objectiveFunction.resultData.get(i).Pe ));
+                sumZw =sumZw .add(new BigDecimal(objectiveFunction.resultData.get(i).Zw ));
+                sumPtA=sumPtA.add(new BigDecimal(objectiveFunction.resultData.get(i).PtA));
+                sumZg =sumZg .add(new BigDecimal(objectiveFunction.resultData.get(i).Zg ));
+                sumPtB=sumPtB.add(new BigDecimal(objectiveFunction.resultData.get(i).PtB));
+                sumPtC=sumPtC.add(new BigDecimal(objectiveFunction.resultData.get(i).PtC));
+                sumPtD=sumPtD.add(new BigDecimal(objectiveFunction.resultData.get(i).PtD));
+
+                if(new BigDecimal(objectiveFunction.resultData.get(i).PtS).compareTo(minPtS)==1)
+                    minPtS=new BigDecimal(objectiveFunction.resultData.get(i).PtS);
+
+                if(new BigDecimal(objectiveFunction.resultData.get(i).PtS).compareTo(maxPtS)==-1)
+                    maxPtS=new BigDecimal(objectiveFunction.resultData.get(i).PtS);
+
+                if(new BigDecimal(objectiveFunction.resultData.get(i).E).compareTo(minE)==1)
+                    minE=new BigDecimal(objectiveFunction.resultData.get(i).E);
+
+                if(new BigDecimal(objectiveFunction.resultData.get(i).E).compareTo(maxE)==1)
+                    maxE=new BigDecimal(objectiveFunction.resultData.get(i).E);
+
+                sumPeA=sumPeA.add(new BigDecimal(objectiveFunction.resultData.get(i).PeA));
+               sumPeB=sumPeB.add(new BigDecimal(objectiveFunction.resultData.get(i).PeB ));
+               sumPeC=sumPeC.add(new BigDecimal(objectiveFunction.resultData.get(i).PeC ));
+               sumPeD=sumPeD.add(new BigDecimal(objectiveFunction.resultData.get(i).PeD ));
+               sumZgA=sumZgA.add(new BigDecimal(objectiveFunction.resultData.get(i).ZgA));
+               sumZwB=sumZwB.add(new BigDecimal(objectiveFunction.resultData.get(i).ZwB ));
+               sumZwC=sumZwC.add(new BigDecimal(objectiveFunction.resultData.get(i).ZwC));
+               sumZwD=sumZwD.add(new BigDecimal(objectiveFunction.resultData.get(i).ZwD));
+               sumRA= sumRA.add(new BigDecimal(objectiveFunction.resultData.get(i).RA));
+               sumRB= sumRB.add(new BigDecimal(objectiveFunction.resultData.get(i).RB));
+               sumRC= sumRC.add(new BigDecimal(objectiveFunction.resultData.get(i).RC));
+               sumRD= sumRD.add(new BigDecimal(objectiveFunction.resultData.get(i).RD));
+
+            }
+            String temp2 =";;;;;;;;"+sumY.toString()+";"+sumPt.toString()+sumPe.toString()+";"+sumZw.toString()+";"+sumPtA.toString()+";"+sumZg.toString()+";"+sumPtB.toString()+";"+sumPtC.toString()+";"+sumPtD.toString()+";"+minPtS.toString()+"/"+maxPtS.toString()+";"+minE.toString()+"/"+maxE.toString()+";"+sumPeA.toString()+";"+sumPeB.toString()+";"+sumPeC.toString()+";"+sumPeD.toString()+";"+sumZgA.toString()+";"+sumZwB.toString()+";"+sumZwC.toString()+";"+sumZwD.toString()+";"+sumRA.toString()+";"+sumRB.toString()+";"+sumRC.toString()+";"+sumRD;
+            temp.add(temp2.replace('.', ','));
             if(linesOfFile!=null)
                 fileHandler.writeToFile(resultFileName.getText(),temp);
 
