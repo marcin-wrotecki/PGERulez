@@ -1,7 +1,5 @@
 package org.openjfx;
 
-import java.math.BigDecimal;
-import java.math.MathContext;
 import java.math.RoundingMode;
 
 public class ResultData {

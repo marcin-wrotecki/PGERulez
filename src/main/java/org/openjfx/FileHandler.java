@@ -1,13 +1,7 @@
 package org.openjfx;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.stage.Stage;
-
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class FileHandler {

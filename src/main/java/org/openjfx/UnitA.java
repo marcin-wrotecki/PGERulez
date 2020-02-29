@@ -2,7 +2,6 @@ package org.openjfx;
 
 
 import java.math.BigDecimal;
-import java.text.Bidi;
 
 public class UnitA {
     public BigDecimal Pe;

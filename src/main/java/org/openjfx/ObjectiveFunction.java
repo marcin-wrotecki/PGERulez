@@ -340,6 +340,7 @@ public class ObjectiveFunction {
                     double max = 0.0;
                     double Y = 0.0;
                     double cu = 0.0;
+
                     double Pe_new = 0.0;
                     double cu_save = 0.0;
 
@@ -584,12 +585,14 @@ public class ObjectiveFunction {
             BigDecimal temp2 = c.Zw.multiply(new BigDecimal("-20.8"));
             c.Y = new BigDecimal(resultData.get(i).K).multiply(c.Pe).add(temp).add(temp2);
 
-            d.Pt = new BigDecimal("220");
-            d.Pe = d.ElectricPower(d.Pt);
-            d.Zw = d.CoalUse(d.Pt);
-            temp = d.Pt.multiply(new BigDecimal("130"));
-            temp2 = d.Zw.multiply(new BigDecimal("-20.8"));
-            d.Y = new BigDecimal(resultData.get(i).K).multiply(d.Pe).add(temp).add(temp2);
+                d.Pt = new BigDecimal("220");
+                d.Pe = d.ElectricPower(d.Pt);
+                d.Zw = d.CoalUse(d.Pt);
+                temp = d.Pt.multiply(new BigDecimal("130"));
+                temp2 = d.Zw.multiply(new BigDecimal("-20.8"));
+                d.Y = new BigDecimal(resultData.get(i).K).multiply(d.Pe).add(temp).add(temp2);
+
+
 
             if( th_needed.subtract(new BigDecimal("440")).compareTo(new BigDecimal("0")) > 0 ) {
                 b.Pt = th_needed.subtract(new BigDecimal("440"));
